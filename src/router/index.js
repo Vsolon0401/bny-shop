@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
 import Layout from '@/views/Layout/Layout.vue'
 
 const router = createRouter({
@@ -11,14 +10,9 @@ const router = createRouter({
       component: Layout
     },
     {
-      path: '/about',
-      name: 'about',
-      // 路由懒加载
-      component: () => import('../views/AboutView.vue')
-    },
-    {
       path: '/login',
       name: 'login',
+      // 路由懒加载
       component: () => import('@/views/Login/Login.vue')
     }
   ]
