@@ -2,23 +2,24 @@
   <div class="home-panel">
     <div class="container">
       <div class="head">
-        <h3>{{title}} <small>{{subTitle}}</small></h3>
+        <h3>
+          {{ title }} <small>{{ subTitle }}</small>
+        </h3>
       </div>
-      <slot name="main" />
+      <slot />
     </div>
   </div>
 </template>
 
 <script setup>
-
 defineProps({
   title: {
     type: String,
-    default: ''
+    default: '-'
   },
   subTitle: {
     type: String,
-    default: ''
+    default: '-'
   }
 })
 </script>

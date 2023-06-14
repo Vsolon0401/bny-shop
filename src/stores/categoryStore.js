@@ -9,7 +9,7 @@ export const useCategoryStore = defineStore('category', () => {
   const getCategory = async () => {
     const res = await getCategoryAPI()
     if (res instanceof AxiosError) return
-    categoryList.value = res?.data?.result
+    categoryList.value = res?.result
   }
 
   return {

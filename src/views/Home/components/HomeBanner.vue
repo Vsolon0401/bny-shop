@@ -11,22 +11,19 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 import { getBannerAPI } from '@/services/category'
-import { AxiosError } from 'axios'
 
 const bannerList = ref([])
 
 const getBanner = async () => {
   const res = await getBannerAPI()
-  if (res instanceof AxiosError) return
-  bannerList.value = res?.data?.result
+  if (res instanceof Error) return
+  bannerList.value = res?.result
 }
 
-onMounted(() => {
-  getBanner()
-})
+onMounted(() => getBanner())
 </script>
 
-<style scoped >
+<style scoped lang="scss">
 .home-banner {
   width: 1240px;
   height: 500px;

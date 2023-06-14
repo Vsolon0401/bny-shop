@@ -12,30 +12,22 @@
   </HomePanel>
 </template>
 
-<script>
+<script setup>
 import HomePanel from "@/views/Home/components/HomePanel.vue";
 import {onMounted, ref} from "vue";
-import {AxiosError} from "axios";
-
-export default {
-  name: "HomeHot",
-  components: {HomePanel}
-}
 
 const hotList = ref([]);
 
 const getHotList = async () => {
   const res = await getHotList();
-  if (res instanceof AxiosError) return;
-  hotList.value = res?.data?.result;
+  if (res instanceof Error) return;
+  hotList.value = res?.result;
 }
 
-onMounted(() => {
-  getHotList()
-})
+onMounted(() => getHotList())
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .goods-list {
   display: flex;
   justify-content: space-between;

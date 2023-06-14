@@ -1,25 +1,25 @@
 import axiosInstance from '@/_utils/http'
-
-export const stringify = (params) => {
-  const toStrParams = ''
-  Reflect.ownKeys(params).forEach((el) => {})
-}
+import { AxiosError } from 'axios'
 
 class Request {
-  constructor() {
-    this.pending = null
-    this.loadign = false
-  }
+  constructor() {}
 
   static async get(url, options) {
-    return axiosInstance.get(url, { ...options })
+    const res = await axiosInstance.get(url, { ...options })
+    if (res instanceof AxiosError) return new Error('网络繁忙，请稍后再试')
+    return res?.data
   }
 
   static async post(url, params, options) {
-    return axiosInstance.post(url, {
-      body: params,
-      ...options
-    })
+    const res = await axiosInstance.post(
+      url,
+      {
+        ...params
+      },
+      { ...options }
+    )
+    if (res instanceof AxiosError) return new Error('网络繁忙，请稍后再试')
+    return res?.data
   }
 }
 
