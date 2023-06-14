@@ -1,12 +1,27 @@
+<script setup>
+import HomePanel from './HomePanel.vue'
+import { getGoodsAPI } from '@/services/category'
+import { onMounted, ref } from 'vue'
+import GoodsItem from './GoodsItem.vue'
+// 获取数据列表
+const goodsProduct = ref([])
+const getGoods = async () => {
+  const res = await getGoodsAPI()
+  console.log(res);
+  goodsProduct.value = res.result
+}
+onMounted(() => getGoods())
+</script>
+
 <template>
   <div class="home-product">
     <HomePanel :title="cate.name" v-for="cate in goodsProduct" :key="cate.id">
       <div class="box">
         <RouterLink class="cover" to="/">
-          <img v-img-lazy="" />
+          <img v-img-lazy="cate.picture" />
           <strong class="label">
-            <span>{{cate.name}}</span>
-            <span>{{cate.saleInfo}}</span>
+            <span>{{ cate.name }}馆</span>
+            <span>{{ cate.saleInfo }}</span>
           </strong>
         </RouterLink>
         <ul class="goods-list">
@@ -18,22 +33,6 @@
     </HomePanel>
   </div>
 </template>
-
-<script setup>
-import { onMounted, ref } from "vue";
-import { getGoodsAPI } from "@/services/category";
-import GoodsItem from "@/views/Home/components/GoodsItem.vue";
-
-const goodsProduct = ref([]);
-
-const getGoods = async () => {
-  const res = await getGoodsAPI()
-  if (res instanceof Error) return;
-  goodsProduct.value = res?.result;
-}
-
-onMounted(() => getGoods())
-</script>
 
 <style scoped lang='scss'>
 .home-product {

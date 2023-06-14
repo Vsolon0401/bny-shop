@@ -1,30 +1,35 @@
+<script setup>
+// 定义props
+defineProps({
+  // 主标题
+  title: {
+    type: String
+  },
+  // 副标题
+  subTitle: {
+    type: String
+  }
+})
+
+</script>
+
+
 <template>
   <div class="home-panel">
     <div class="container">
       <div class="head">
+        <!-- 主标题和副标题 -->
         <h3>
-          {{ title }} <small>{{ subTitle }}</small>
+          {{ title }}<small>{{ subTitle }}</small>
         </h3>
       </div>
+      <!-- 主体内容区域 -->
       <slot />
     </div>
   </div>
 </template>
 
-<script setup>
-defineProps({
-  title: {
-    type: String,
-    default: '-'
-  },
-  subTitle: {
-    type: String,
-    default: '-'
-  }
-})
-</script>
-
-<style scoped lang="scss">
+<style scoped lang='scss'>
 .home-panel {
   background-color: #fff;
 
