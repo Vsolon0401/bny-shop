@@ -21,6 +21,17 @@ class Request {
     if (res instanceof AxiosError) return new Error('网络繁忙，请稍后再试')
     return res?.data
   }
+
+  static async delete(url, params, options) {
+    const res = await axiosInstance.delete(url, {
+      ...options,
+      data: {
+        ...params
+      }
+    })
+    if (res instanceof AxiosError) return new Error('网络繁忙，请稍后再试')
+    return res?.data
+  }
 }
 
 export default Request

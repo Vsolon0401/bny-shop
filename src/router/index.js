@@ -15,7 +15,27 @@ const router = createRouter({
         },
         {
           path: 'category/:id',
-          component: () => import('@/views')
+          component: () => import('@/views/Category/ICategory.vue')
+        },
+        {
+          path: 'category/sub/:id',
+          component: () => import('@/views/SubCategory/SubCategory.vue')
+        },
+        {
+          path: 'detail/:id',
+          component: () => import('@/views/Detail/IDetail.vue')
+        },
+        {
+          path: 'cartList',
+          component: () => import('@/views/CartList/CartList.vue')
+        },
+        {
+          path: 'checkout',
+          component: () => import('@/views/Checkout/Checkout.vue')
+        },
+        {
+          path: 'pay',
+          component: () => import('@/views/Pay/IPay.vue')
         }
       ]
     },
